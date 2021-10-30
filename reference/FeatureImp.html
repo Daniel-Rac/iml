@@ -188,17 +188,17 @@ Variable Importance Measures for any Machine Learning Model Class, from the
     <h2 class="hasAnchor" id="public-fields"><a class="anchor" href="#public-fields"></a>Public fields</h2>
 
     <p><div class="r6-fields"></p><dl>
-<dt><code>loss</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code> | <a href='https://rdrr.io/r/base/function.html'>function</a>)<br />
+<dt><code>loss</code></dt><dd><p>(<code>character(1)</code> | <a href='https://rdrr.io/r/base/function.html'>function</a>)<br />
 The loss function. Either the name of a loss (e.g. <code>"ce"</code> for
 classification or <code>"mse"</code>) or a function.</p></dd>
 
-<dt><code>original.error</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/numeric.html'>numeric(1)</a></code>)<br />
+<dt><code>original.error</code></dt><dd><p>(<code>numeric(1)</code>)<br />
 The loss of the model before perturbing features.</p></dd>
 
 <dt><code>n.repetitions</code></dt><dd><p><a href='https://rdrr.io/r/base/integer.html'>integer</a><br />
 Number of repetitions.</p></dd>
 
-<dt><code>compare</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>)<br /> Either <code>"ratio"</code> or <code>"difference"</code>,
+<dt><code>compare</code></dt><dd><p>(<code>character(1)</code>)<br /> Either <code>"ratio"</code> or <code>"difference"</code>,
 depending on whether the importance was calculated as difference
 between original model error and model error after permutation or as
 ratio.</p></dd>
@@ -241,12 +241,12 @@ specify which feature(s) are to be permuted.</p></dd>
 The object (created with <code>Predictor$new()</code>) holding the machine
 learning model and the data.</p></dd>
 
-<dt><code>loss</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code> | <a href='https://rdrr.io/r/base/function.html'>function</a>)<br />
+<dt><code>loss</code></dt><dd><p>(<code>character(1)</code> | <a href='https://rdrr.io/r/base/function.html'>function</a>)<br />
 The loss function. Either the name of a loss (e.g. <code>"ce"</code> for
 classification or <code>"mse"</code>) or a function. See Details for allowed
 losses.</p></dd>
 
-<dt><code>compare</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>)<br />
+<dt><code>compare</code></dt><dd><p>(<code>character(1)</code>)<br />
 Either <code>"ratio"</code> or <code>"difference"</code>.
 Should importance be measured as the difference or as the ratio of
 original model error and model error after permutation?
@@ -255,7 +255,7 @@ original model error and model error after permutation?
 <li><p>Difference: error.permutation - error.orig</p></li>
 </ul></p></dd>
 
-<dt><code>n.repetitions</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/numeric.html'>numeric(1)</a></code>)<br />
+<dt><code>n.repetitions</code></dt><dd><p>(<code>numeric(1)</code>)<br />
 How often should the shuffling of the feature be repeated?
 The higher the number of repetitions the more stable and accurate the
 results become.</p></dd>
@@ -293,78 +293,87 @@ plots, the median importance over the repetitions as a point.</p>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://github.com/bethatkinson/rpart'>"rpart"</a></span><span class='op'>)</span>
-<span class='co'># We train a tree on the Boston dataset:</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"Boston"</span>, package <span class='op'>=</span> <span class='st'>"MASS"</span><span class='op'>)</span>
-<span class='va'>tree</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/rpart/man/rpart.html'>rpart</a></span><span class='op'>(</span><span class='va'>medv</span> <span class='op'>~</span> <span class='va'>.</span>, data <span class='op'>=</span> <span class='va'>Boston</span><span class='op'>)</span>
-<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='va'>Boston</span><span class='op'>$</span><span class='va'>medv</span>
-<span class='va'>X</span> <span class='op'>&lt;-</span> <span class='va'>Boston</span><span class='op'>[</span><span class='op'>-</span><span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>Boston</span><span class='op'>)</span> <span class='op'>==</span> <span class='st'>"medv"</span><span class='op'>)</span><span class='op'>]</span>
-<span class='va'>mod</span> <span class='op'>&lt;-</span> <span class='va'><a href='Predictor.html'>Predictor</a></span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='va'>tree</span>, data <span class='op'>=</span> <span class='va'>X</span>, y <span class='op'>=</span> <span class='va'>y</span><span class='op'>)</span>
-
-
-<span class='co'># Compute feature importances as the performance drop in mean absolute error</span>
-<span class='va'>imp</span> <span class='op'>&lt;-</span> <span class='va'>FeatureImp</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='va'>mod</span>, loss <span class='op'>=</span> <span class='st'>"mae"</span><span class='op'>)</span>
-
-<span class='co'># Plot the results directly</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>imp</span><span class='op'>)</span>
-</div><div class='img'><img src='FeatureImp-1.png' alt='' width='700' height='433' /></div><div class='input'>
-
-<span class='co'># Since the result is a ggplot object, you can extend it:</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://ggplot2.tidyverse.org'>"ggplot2"</a></span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>imp</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='img'><img src='FeatureImp-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># If you want to do your own thing, just extract the data:</span>
-<span class='va'>imp.dat</span> <span class='op'>&lt;-</span> <span class='va'>imp</span><span class='op'>$</span><span class='va'>results</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>imp.dat</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;   feature importance.05 importance importance.95 permutation.error
-#&gt; 1      rm      2.141190   2.183644      2.218036          6.353752
-#&gt; 2   lstat      1.820198   1.870549      1.930378          5.442741
-#&gt; 3     dis      1.163953   1.180921      1.231322          3.436129
-#&gt; 4    crim      1.113243   1.132964      1.154077          3.296587
-#&gt; 5      zn      1.000000   1.000000      1.000000          2.909702
-#&gt; 6   indus      1.000000   1.000000      1.000000          2.909702</div><div class='input'><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>imp.dat</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>feature</span>, y <span class='op'>=</span> <span class='va'>importance</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='img'><img src='FeatureImp-3.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># We can also look at the difference in model error instead of the ratio</span>
-<span class='va'>imp</span> <span class='op'>&lt;-</span> <span class='va'>FeatureImp</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='va'>mod</span>, loss <span class='op'>=</span> <span class='st'>"mae"</span>, compare <span class='op'>=</span> <span class='st'>"difference"</span><span class='op'>)</span>
-
-<span class='co'># Plot the results directly</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>imp</span><span class='op'>)</span>
-</div><div class='img'><img src='FeatureImp-4.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># We can calculate feature importance for a subset of features </span>
-<span class='va'>imp</span> <span class='op'>&lt;-</span> <span class='va'>FeatureImp</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='va'>mod</span>, loss <span class='op'>=</span> <span class='st'>"mae"</span>, features <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"crim"</span>, <span class='st'>"zn"</span>, <span class='st'>"indus"</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>imp</span><span class='op'>)</span>
-</div><div class='img'><img src='FeatureImp-5.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># We can calculate joint importance of groups of features</span>
-<span class='va'>groups</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
- grp1 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"crim"</span>, <span class='st'>"zn"</span>, <span class='st'>"indus"</span>, <span class='st'>"chas"</span><span class='op'>)</span>,
- grp2 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"nox"</span>, <span class='st'>"rm"</span>, <span class='st'>"age"</span>, <span class='st'>"dis"</span><span class='op'>)</span>,
- grp3 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"rad"</span>, <span class='st'>"tax"</span>, <span class='st'>"ptratio"</span>, <span class='st'>"black"</span>, <span class='st'>"lstat"</span><span class='op'>)</span>
-<span class='op'>)</span>
-<span class='va'>imp</span> <span class='op'>&lt;-</span> <span class='va'>FeatureImp</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='va'>mod</span>, loss <span class='op'>=</span> <span class='st'>"mae"</span>, features <span class='op'>=</span> <span class='va'>groups</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>imp</span><span class='op'>)</span>
-</div><div class='img'><img src='FeatureImp-6.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># FeatureImp also works with multiclass classification.</span>
-<span class='co'># In this case, the importance measurement regards all classes</span>
-<span class='va'>tree</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/rpart/man/rpart.html'>rpart</a></span><span class='op'>(</span><span class='va'>Species</span> <span class='op'>~</span> <span class='va'>.</span>, data <span class='op'>=</span> <span class='va'>iris</span><span class='op'>)</span>
-<span class='va'>X</span> <span class='op'>&lt;-</span> <span class='va'>iris</span><span class='op'>[</span><span class='op'>-</span><span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>iris</span><span class='op'>)</span> <span class='op'>==</span> <span class='st'>"Species"</span><span class='op'>)</span><span class='op'>]</span>
-<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='va'>iris</span><span class='op'>$</span><span class='va'>Species</span>
-<span class='va'>mod</span> <span class='op'>&lt;-</span> <span class='va'><a href='Predictor.html'>Predictor</a></span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='va'>tree</span>, data <span class='op'>=</span> <span class='va'>X</span>, y <span class='op'>=</span> <span class='va'>y</span>, type <span class='op'>=</span> <span class='st'>"prob"</span><span class='op'>)</span>
-
-<span class='co'># For some models we have to specify additional arguments for the predict function</span>
-<span class='va'>imp</span> <span class='op'>&lt;-</span> <span class='va'>FeatureImp</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='va'>mod</span>, loss <span class='op'>=</span> <span class='st'>"ce"</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>imp</span><span class='op'>)</span>
-</div><div class='img'><img src='FeatureImp-7.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># For multiclass classification models, you can choose to only compute</span>
-<span class='co'># performance for one class.</span>
-<span class='co'># Make sure to adapt y</span>
-<span class='va'>mod</span> <span class='op'>&lt;-</span> <span class='va'><a href='Predictor.html'>Predictor</a></span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='va'>tree</span>,
-  data <span class='op'>=</span> <span class='va'>X</span>, y <span class='op'>=</span> <span class='va'>y</span> <span class='op'>==</span> <span class='st'>"virginica"</span>,
-  type <span class='op'>=</span> <span class='st'>"prob"</span>, class <span class='op'>=</span> <span class='st'>"virginica"</span>
-<span class='op'>)</span>
-<span class='va'>imp</span> <span class='op'>&lt;-</span> <span class='va'>FeatureImp</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='va'>mod</span>, loss <span class='op'>=</span> <span class='st'>"ce"</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>imp</span><span class='op'>)</span>
-</div><div class='img'><img src='FeatureImp-8.png' alt='' width='700' height='433' /></div></pre>
+    <pre class="examples"><span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://github.com/bethatkinson/rpart'>"rpart"</a></span><span class='op'>)</span></span>
+<span class='r-in'><span class='co'># We train a tree on the Boston dataset:</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"Boston"</span>, package <span class='op'>=</span> <span class='st'>"MASS"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>tree</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/rpart/man/rpart.html'>rpart</a></span><span class='op'>(</span><span class='va'>medv</span> <span class='op'>~</span> <span class='va'>.</span>, data <span class='op'>=</span> <span class='va'>Boston</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>y</span> <span class='op'>&lt;-</span> <span class='va'>Boston</span><span class='op'>$</span><span class='va'>medv</span></span>
+<span class='r-in'><span class='va'>X</span> <span class='op'>&lt;-</span> <span class='va'>Boston</span><span class='op'>[</span><span class='op'>-</span><span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>Boston</span><span class='op'>)</span> <span class='op'>==</span> <span class='st'>"medv"</span><span class='op'>)</span><span class='op'>]</span></span>
+<span class='r-in'><span class='va'>mod</span> <span class='op'>&lt;-</span> <span class='va'><a href='Predictor.html'>Predictor</a></span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='va'>tree</span>, data <span class='op'>=</span> <span class='va'>X</span>, y <span class='op'>=</span> <span class='va'>y</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Compute feature importances as the performance drop in mean absolute error</span></span>
+<span class='r-in'><span class='va'>imp</span> <span class='op'>&lt;-</span> <span class='va'>FeatureImp</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='va'>mod</span>, loss <span class='op'>=</span> <span class='st'>"mae"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Plot the results directly</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>imp</span><span class='op'>)</span></span>
+<span class='r-plt img'><img src='FeatureImp-1.png' alt='' width='700' height='433' /></span>
+<span class='r-in'></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Since the result is a ggplot object, you can extend it:</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://ggplot2.tidyverse.org'>"ggplot2"</a></span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>imp</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-plt img'><img src='FeatureImp-2.png' alt='' width='700' height='433' /></span>
+<span class='r-in'><span class='co'># If you want to do your own thing, just extract the data:</span></span>
+<span class='r-in'><span class='va'>imp.dat</span> <span class='op'>&lt;-</span> <span class='va'>imp</span><span class='op'>$</span><span class='va'>results</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>imp.dat</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   feature importance.05 importance importance.95 permutation.error</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1      rm      2.141190   2.183644      2.218036          6.353752</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2   lstat      1.820198   1.870549      1.930378          5.442741</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3     dis      1.163953   1.180921      1.231322          3.436129</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4    crim      1.113243   1.132964      1.154077          3.296587</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5      zn      1.000000   1.000000      1.000000          2.909702</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6   indus      1.000000   1.000000      1.000000          2.909702</span>
+<span class='r-in'><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>imp.dat</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>feature</span>, y <span class='op'>=</span> <span class='va'>importance</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span class='r-in'>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span class='r-in'>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-plt img'><img src='FeatureImp-3.png' alt='' width='700' height='433' /></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># We can also look at the difference in model error instead of the ratio</span></span>
+<span class='r-in'><span class='va'>imp</span> <span class='op'>&lt;-</span> <span class='va'>FeatureImp</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='va'>mod</span>, loss <span class='op'>=</span> <span class='st'>"mae"</span>, compare <span class='op'>=</span> <span class='st'>"difference"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Plot the results directly</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>imp</span><span class='op'>)</span></span>
+<span class='r-plt img'><img src='FeatureImp-4.png' alt='' width='700' height='433' /></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># We can calculate feature importance for a subset of features </span></span>
+<span class='r-in'><span class='va'>imp</span> <span class='op'>&lt;-</span> <span class='va'>FeatureImp</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='va'>mod</span>, loss <span class='op'>=</span> <span class='st'>"mae"</span>, features <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"crim"</span>, <span class='st'>"zn"</span>, <span class='st'>"indus"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>imp</span><span class='op'>)</span></span>
+<span class='r-plt img'><img src='FeatureImp-5.png' alt='' width='700' height='433' /></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># We can calculate joint importance of groups of features</span></span>
+<span class='r-in'><span class='va'>groups</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span></span>
+<span class='r-in'> grp1 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"crim"</span>, <span class='st'>"zn"</span>, <span class='st'>"indus"</span>, <span class='st'>"chas"</span><span class='op'>)</span>,</span>
+<span class='r-in'> grp2 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"nox"</span>, <span class='st'>"rm"</span>, <span class='st'>"age"</span>, <span class='st'>"dis"</span><span class='op'>)</span>,</span>
+<span class='r-in'> grp3 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"rad"</span>, <span class='st'>"tax"</span>, <span class='st'>"ptratio"</span>, <span class='st'>"black"</span>, <span class='st'>"lstat"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>imp</span> <span class='op'>&lt;-</span> <span class='va'>FeatureImp</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='va'>mod</span>, loss <span class='op'>=</span> <span class='st'>"mae"</span>, features <span class='op'>=</span> <span class='va'>groups</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>imp</span><span class='op'>)</span></span>
+<span class='r-plt img'><img src='FeatureImp-6.png' alt='' width='700' height='433' /></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># FeatureImp also works with multiclass classification.</span></span>
+<span class='r-in'><span class='co'># In this case, the importance measurement regards all classes</span></span>
+<span class='r-in'><span class='va'>tree</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/rpart/man/rpart.html'>rpart</a></span><span class='op'>(</span><span class='va'>Species</span> <span class='op'>~</span> <span class='va'>.</span>, data <span class='op'>=</span> <span class='va'>iris</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>X</span> <span class='op'>&lt;-</span> <span class='va'>iris</span><span class='op'>[</span><span class='op'>-</span><span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>iris</span><span class='op'>)</span> <span class='op'>==</span> <span class='st'>"Species"</span><span class='op'>)</span><span class='op'>]</span></span>
+<span class='r-in'><span class='va'>y</span> <span class='op'>&lt;-</span> <span class='va'>iris</span><span class='op'>$</span><span class='va'>Species</span></span>
+<span class='r-in'><span class='va'>mod</span> <span class='op'>&lt;-</span> <span class='va'><a href='Predictor.html'>Predictor</a></span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='va'>tree</span>, data <span class='op'>=</span> <span class='va'>X</span>, y <span class='op'>=</span> <span class='va'>y</span>, type <span class='op'>=</span> <span class='st'>"prob"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># For some models we have to specify additional arguments for the predict function</span></span>
+<span class='r-in'><span class='va'>imp</span> <span class='op'>&lt;-</span> <span class='va'>FeatureImp</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='va'>mod</span>, loss <span class='op'>=</span> <span class='st'>"ce"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>imp</span><span class='op'>)</span></span>
+<span class='r-plt img'><img src='FeatureImp-7.png' alt='' width='700' height='433' /></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># For multiclass classification models, you can choose to only compute</span></span>
+<span class='r-in'><span class='co'># performance for one class.</span></span>
+<span class='r-in'><span class='co'># Make sure to adapt y</span></span>
+<span class='r-in'><span class='va'>mod</span> <span class='op'>&lt;-</span> <span class='va'><a href='Predictor.html'>Predictor</a></span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='va'>tree</span>,</span>
+<span class='r-in'>  data <span class='op'>=</span> <span class='va'>X</span>, y <span class='op'>=</span> <span class='va'>y</span> <span class='op'>==</span> <span class='st'>"virginica"</span>,</span>
+<span class='r-in'>  type <span class='op'>=</span> <span class='st'>"prob"</span>, class <span class='op'>=</span> <span class='st'>"virginica"</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>imp</span> <span class='op'>&lt;-</span> <span class='va'>FeatureImp</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='va'>mod</span>, loss <span class='op'>=</span> <span class='st'>"ce"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>imp</span><span class='op'>)</span></span>
+<span class='r-plt img'><img src='FeatureImp-8.png' alt='' width='700' height='433' /></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
