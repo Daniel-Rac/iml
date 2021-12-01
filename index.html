@@ -30,6 +30,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -42,18 +44,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">iml</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.10.1.9000</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
@@ -78,7 +74,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/christophM/iml/">
+  <a href="https://github.com/christophM/iml/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -97,13 +93,13 @@
   <div class="contents col-md-9">
 
 
-<div id="iml" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#iml" class="anchor"></a>iml</h1></div>
-<p><code>iml</code> is an R package that interprets the behavior and explains predictions of machine learning models. <img src="https://github.com/christophM/iml/blob/master/man/figures/iml.png?raw=true" align="right" height="140/"> It implements model-agnostic interpretability methods - meaning they can be used with any machine learning model.</p>
-<div id="features" class="section level2">
-<h2 class="hasAnchor">
-<a href="#features" class="anchor"></a>Features</h2>
+<div class="section level1">
+<div class="page-header"><h1 id="iml">iml<a class="anchor" aria-label="anchor" href="#iml"></a>
+</h1></div>
+<p><code>iml</code> is an R package that interprets the behavior and explains predictions of machine learning models. <img src="https://github.com/christophM/iml/blob/master/reference/figures/iml.png?raw=true" align="right" height="140/"> It implements model-agnostic interpretability methods - meaning they can be used with any machine learning model.</p>
+<div class="section level2">
+<h2 id="features">Features<a class="anchor" aria-label="anchor" href="#features"></a>
+</h2>
 <ul>
 <li>Feature importance</li>
 <li>Partial dependence plots</li>
@@ -113,52 +109,52 @@
 <li>LocalModel: Local Interpretable Model-agnostic Explanations</li>
 <li>Shapley value for explaining single predictions</li>
 </ul>
-<p>Read more about the methods in the <a href="https://christophm.github.io/interpretable-ml-book/agnostic.html">Interpretable Machine Learning</a> book.</p>
+<p>Read more about the methods in the <a href="https://christophm.github.io/interpretable-ml-book/agnostic.html" class="external-link">Interpretable Machine Learning</a> book.</p>
 </div>
-<div id="tutorial" class="section level2">
-<h2 class="hasAnchor">
-<a href="#tutorial" class="anchor"></a>Tutorial</h2>
-<p>Start an interactive notebook tutorial by clicking on this badge <a href="http://beta.mybinder.org/v2/gh/christophM/iml/master?filepath=./notebooks/tutorial-intro.ipynb"><img src="http://mybinder.org/badge.svg" alt="Binder"></a></p>
+<div class="section level2">
+<h2 id="tutorial">Tutorial<a class="anchor" aria-label="anchor" href="#tutorial"></a>
+</h2>
+<p>Start an interactive notebook tutorial by clicking on this badge <a href="http://beta.mybinder.org/v2/gh/christophM/iml/master?filepath=./notebooks/tutorial-intro.ipynb" class="external-link"><img src="http://mybinder.org/badge.svg" alt="Binder"></a></p>
 </div>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
 <p>The package can be installed directly from CRAN and the development version from GitHub:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Stable version</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"iml"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"iml"</span><span class="op">)</span>
 
 <span class="co"># Development version</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"christophM/iml"</span><span class="op">)</span></code></pre></div>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"christophM/iml"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="news" class="section level2">
-<h2 class="hasAnchor">
-<a href="#news" class="anchor"></a>News</h2>
-<p>Changes of the packages can be accessed in the <a href="https://christophm.github.io/iml/news/index.html">NEWS file</a>.</p>
+<div class="section level2">
+<h2 id="news">News<a class="anchor" aria-label="anchor" href="#news"></a>
+</h2>
+<p>Changes of the packages can be accessed in the <a href="https://christophm.github.io/iml/news/index.html" class="external-link">NEWS file</a>.</p>
 </div>
-<div id="quickstart" class="section level2">
-<h2 class="hasAnchor">
-<a href="#quickstart" class="anchor"></a>Quickstart</h2>
+<div class="section level2">
+<h2 id="quickstart">Quickstart<a class="anchor" aria-label="anchor" href="#quickstart"></a>
+</h2>
 <p>First we train a Random Forest to predict the Boston median housing value. How does <code>lstat</code> influence the prediction individually and on average? (Accumulated local effects)</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://christophm.github.io/iml/">"iml"</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://www.stat.berkeley.edu/~breiman/RandomForests/">"randomForest"</a></span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"Boston"</span>, package <span class="op">=</span> <span class="st">"MASS"</span><span class="op">)</span>
-<span class="va">rf</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/randomForest/man/randomForest.html">randomForest</a></span><span class="op">(</span><span class="va">medv</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">Boston</span>, ntree <span class="op">=</span> <span class="fl">50</span><span class="op">)</span>
-<span class="va">X</span> <span class="op">=</span> <span class="va">Boston</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">Boston</span><span class="op">)</span> <span class="op">!=</span> <span class="st">"medv"</span><span class="op">)</span><span class="op">]</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://christophm.github.io/iml/" class="external-link">"iml"</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://www.stat.berkeley.edu/~breiman/RandomForests/" class="external-link">"randomForest"</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"Boston"</span>, package <span class="op">=</span> <span class="st">"MASS"</span><span class="op">)</span>
+<span class="va">rf</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/randomForest/man/randomForest.html" class="external-link">randomForest</a></span><span class="op">(</span><span class="va">medv</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">Boston</span>, ntree <span class="op">=</span> <span class="fl">50</span><span class="op">)</span>
+<span class="va">X</span> <span class="op">=</span> <span class="va">Boston</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">Boston</span><span class="op">)</span> <span class="op">!=</span> <span class="st">"medv"</span><span class="op">)</span><span class="op">]</span>
 <span class="va">model</span> <span class="op">=</span> <span class="va"><a href="reference/Predictor.html">Predictor</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="va">rf</span>, data <span class="op">=</span> <span class="va">X</span>, y <span class="op">=</span> <span class="va">Boston</span><span class="op">$</span><span class="va">medv</span><span class="op">)</span>
 <span class="va">effect</span> <span class="op">=</span> <span class="va"><a href="reference/FeatureEffects.html">FeatureEffects</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="va">model</span><span class="op">)</span>
-<span class="va">effect</span><span class="op">$</span><span class="fu">plot</span><span class="op">(</span>features <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"lstat"</span>, <span class="st">"age"</span>, <span class="st">"rm"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="va">effect</span><span class="op">$</span><span class="fu">plot</span><span class="op">(</span>features <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"lstat"</span>, <span class="st">"age"</span>, <span class="st">"rm"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-2-1.png"><!-- --></p>
 </div>
-<div id="contribute" class="section level2">
-<h2 class="hasAnchor">
-<a href="#contribute" class="anchor"></a>Contribute</h2>
+<div class="section level2">
+<h2 id="contribute">Contribute<a class="anchor" aria-label="anchor" href="#contribute"></a>
+</h2>
 <p>Please check the <a href="CONTRIBUTING.html">contribution guidelines</a></p>
 </div>
-<div id="citation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#citation" class="anchor"></a>Citation</h2>
+<div class="section level2">
+<h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
+</h2>
 <p>If you use iml in a scientific publication, please cite it as:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>Molnar, Christoph, Giuseppe Casalicchio, and Bernd Bischl. <span class="st">"iml: An R package for interpretable machine learning."</span> Journal of Open Source Software <span class="fl">3.26</span> (<span class="dv">2018</span>)<span class="op">:</span><span class="st"> </span><span class="fl">786.</span></span></code></pre></div>
 <p>BibTeX:</p>
@@ -172,10 +168,10 @@
 <span id="cb4-8"><a href="#cb4-8"></a>  year={2018}</span>
 <span id="cb4-9"><a href="#cb4-9"></a>}</span></code></pre></div>
 </div>
-<div id="license" class="section level2">
-<h2 class="hasAnchor">
-<a href="#license" class="anchor"></a>License</h2>
-<p>© 2018 - 2020 <a href="https://christophm.github.io/">Christoph Molnar</a></p>
+<div class="section level2">
+<h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
+</h2>
+<p>© 2018 - 2020 <a href="https://christophm.github.io/" class="external-link">Christoph Molnar</a></p>
 <p>The contents of this repository are distributed under the MIT license. See below for details:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>The MIT <span class="kw">License</span> (MIT)</span>
 <span id="cb5-2"><a href="#cb5-2"></a></span>
@@ -197,9 +193,9 @@
 <span id="cb5-18"><a href="#cb5-18"></a>OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span>
 <span id="cb5-19"><a href="#cb5-19"></a>SOFTWARE.</span></code></pre></div>
 </div>
-<div id="funding" class="section level2">
-<h2 class="hasAnchor">
-<a href="#funding" class="anchor"></a>Funding</h2>
+<div class="section level2">
+<h2 id="funding">Funding<a class="anchor" aria-label="anchor" href="#funding"></a>
+</h2>
 <p>This work is funded by the Bavarian State Ministry of Education, Science and the Arts in the framework of the Centre Digitisation.Bavaria (ZD.B)</p>
 </div>
 </div>
@@ -208,65 +204,69 @@
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=iml">https://​cloud.r-project.org/​package=iml</a>
-</li>
-<li>Browse source code at <br><a href="https://github.com/christophM/iml/">https://​github.com/​christophM/​iml/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/christophM/iml/issues">https://​github.com/​christophM/​iml/​issues</a>
-</li>
+<li><a href="https://cloud.r-project.org/package=iml" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/christophM/iml/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/christophM/iml/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li>
-<a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a>
+<a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a>
 </li>
 </ul>
 </div>
+
 <div class="community">
-<h2>Community</h2>
+<h2 data-toc-skip>Community</h2>
 <ul class="list-unstyled">
 <li><a href="CONTRIBUTING.html">Contributing guide</a></li>
 </ul>
 </div>
+
 <div class="citation">
-<h2>Citation</h2>
+<h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li><a href="authors.html">Citing iml</a></li>
-</ul>
-</div>
-<div class="developers">
-<h2>Developers</h2>
-<ul class="list-unstyled">
-<li>Christoph Molnar <br><small class="roles"> Author, maintainer </small>  </li>
-<li>
-<a href="https://pat-s.me">Patrick Schratz</a> <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0003-0748-6624" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li><a href="authors.html#citation">Citing iml</a></li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/christophM/iml/actions"><img src="https://github.com/christophM/iml/workflows/tic/badge.svg?branch=master" alt="tic"></a></li>
-<li><a href="https://CRAN.R-project.org/package=iml"><img src="http://www.r-pkg.org/badges/version/iml" alt="CRAN Status Badge"></a></li>
-<li><a href="https://cran.rstudio.com/web/packages/iml/index.html"><img src="http://cranlogs.r-pkg.org/badges/grand-total/iml" alt="CRAN Downloads"></a></li>
-<li><a href="https://codecov.io/github/christophM/iml?branch=master"><img src="https://codecov.io/github/christophM/iml/coverage.svg?branch=master" alt="codecov.io"></a></li>
-<li><a href="https://doi.org/10.21105/joss.00786"><img src="http://joss.theoj.org/papers/10.21105/joss.00786/status.svg" alt="DOI"></a></li>
+<li>Christoph Molnar <br><small class="roles"> Author, maintainer </small>  </li>
+<li>
+<a href="https://pat-s.me" class="external-link">Patrick Schratz</a> <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0003-0748-6624" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 </ul>
 </div>
+
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/christophM/iml/actions" class="external-link"><img src="https://github.com/christophM/iml/workflows/tic/badge.svg?branch=master" alt="tic"></a></li>
+<li><a href="https://CRAN.R-project.org/package=iml" class="external-link"><img src="http://www.r-pkg.org/badges/version/iml" alt="CRAN Status Badge"></a></li>
+<li><a href="https://cran.rstudio.com/web/packages/iml/index.html" class="external-link"><img src="http://cranlogs.r-pkg.org/badges/grand-total/iml" alt="CRAN Downloads"></a></li>
+<li><a href="https://codecov.io/github/christophM/iml?branch=master" class="external-link"><img src="https://codecov.io/github/christophM/iml/coverage.svg?branch=master" alt="codecov.io"></a></li>
+<li><a href="https://doi.org/10.21105/joss.00786" class="external-link"><img src="http://joss.theoj.org/papers/10.21105/joss.00786/status.svg" alt="DOI"></a></li>
+</ul>
 </div>
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Christoph Molnar, <a href="https://pat-s.me">Patrick Schratz</a>.</p>
+  <p></p>
+<p>Developed by Christoph Molnar, <a href="https://pat-s.me" class="external-link">Patrick Schratz</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.0.</p>
 </div>
 
       </footer>
@@ -274,6 +274,8 @@
 
   
 
+
+  
 
   </body>
 </html>
