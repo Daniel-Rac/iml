@@ -69,7 +69,6 @@ importance is measured as the factor by which the model's prediction error
 increases when the feature is shuffled.</p>
     </div>
 
-    <div id="ref-usage">Usage,NULL</div>
 
     <div id="details">
     <h2>Details</h2>
@@ -275,10 +274,10 @@ plots, the median importance over the repetitions as a point.</p>
 <span class="r-in"><span class="va">imp.dat</span> <span class="op">&lt;-</span> <span class="va">imp</span><span class="op">$</span><span class="va">results</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">imp.dat</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   feature importance.05 importance importance.95 permutation.error</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1      rm      2.182121   2.216021      2.254308          6.447961</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   lstat      1.827586   1.860861      1.935916          5.414550</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3     dis      1.123789   1.159866      1.201277          3.374865</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    crim      1.124275   1.129182      1.155156          3.285582</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1      rm      2.085610   2.114055      2.173537          6.151270</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   lstat      1.814238   1.911827      1.929219          5.562848</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     dis      1.132030   1.175623      1.233690          3.420711</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    crim      1.127542   1.150097      1.177703          3.346439</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5      zn      1.000000   1.000000      1.000000          2.909702</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6   indus      1.000000   1.000000      1.000000          2.909702</span>
 <span class="r-in"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">imp.dat</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">feature</span>, y <span class="op">=</span> <span class="va">importance</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -344,7 +343,7 @@ plots, the median importance over the repetitions as a point.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.0.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer></div>
