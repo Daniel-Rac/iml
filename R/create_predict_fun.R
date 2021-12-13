@@ -37,6 +37,7 @@ create_predict_fun.Learner <- function(model, task, predict.fun = NULL, type = N
         pred <- predict(model, newdata = newdata)
         factor_to_dataframe(pred)
       } else {
+        print("yyy")
         data.frame(predict(model, newdata = newdata, predict_type = "prob"), check.names = FALSE)
         print("xxx")
       }
