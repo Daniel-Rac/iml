@@ -111,7 +111,7 @@ Predictor <- R6Class("Predictor",
       
       
       
-      if(task != NULL){
+      if(!is.null(task)){
         self$task = task
       }else{
         self$task <- inferTaskFromModel(model)
