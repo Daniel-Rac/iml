@@ -78,7 +78,7 @@ Predictor <- R6Class("Predictor",
     #' The maximum number of rows to be input the model for prediction at once.
     #' Currently only respected for [FeatureImp], [Partial] and [Interaction].
     initialize = function(model = NULL, data = NULL, predict.function = NULL,
-                          y = NULL, class = NULL, type = NULL,
+                          y = NULL, class = NULL, type = NULL, task = NULL,
                           batch.size = 1000) {
       assert_number(batch.size, lower = 1)
       if (is.null(model) & is.null(predict.function)) {
@@ -124,7 +124,8 @@ Predictor <- R6Class("Predictor",
      
       self$prediction.function <- create_predict_fun(model, self$task,
         predict.function,
-        type = type
+        type = type,
+        task = task
       )
       self$batch.size <- batch.size
     },
