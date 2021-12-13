@@ -1,8 +1,8 @@
-create_predict_fun <- function(model, task, predict.fun = NULL, type = NULL, task = NULL) {
+create_predict_fun <- function(model, task, predict.fun = NULL, type = NULL, task_benchmark = NULL) {
   UseMethod("create_predict_fun")
 }
 
-create_predict_fun.WrappedModel <- function(model, task, predict.fun = NULL, type = NULL, task = NULL) {
+create_predict_fun.WrappedModel <- function(model, task, predict.fun = NULL, type = NULL, task_benchmark = NULL) {
   if (!requireNamespace("mlr")) {
     "Please install the mlr package."
   }
@@ -27,7 +27,7 @@ create_predict_fun.WrappedModel <- function(model, task, predict.fun = NULL, typ
 }
 
 
-create_predict_fun.Learner <- function(model, task, predict.fun = NULL, type = NULL, task = NULL) {
+create_predict_fun.Learner <- function(model, task, predict.fun = NULL, type = NULL, task_benchmark = NULL) {
   if (!requireNamespace("mlr3")) {
     "Please install the mlr3 package."
   }
@@ -50,7 +50,7 @@ create_predict_fun.Learner <- function(model, task, predict.fun = NULL, type = N
 }
 
 
-create_predict_fun.train <- function(model, task, predict.fun = NULL, type = NULL, task = NULL) {
+create_predict_fun.train <- function(model, task, predict.fun = NULL, type = NULL, task_benchmark = NULL) {
   if (task == "classification") {
     function(newdata) {
       if (is.null(type)) {
@@ -79,7 +79,7 @@ create_predict_fun.train <- function(model, task, predict.fun = NULL, type = NUL
 
 
 
-create_predict_fun.NULL <- function(model, task, predict.fun = NULL, type = NULL, task = NULL) {
+create_predict_fun.NULL <- function(model, task, predict.fun = NULL, type = NULL, task_benchmark = NULL) {
   function(newdata) {
     pred <- predict.fun(newdata = newdata)
     if (is_label(pred)) {
@@ -90,7 +90,7 @@ create_predict_fun.NULL <- function(model, task, predict.fun = NULL, type = NULL
 }
 
 #' @importFrom stats model.matrix
-create_predict_fun.default <- function(model, task, predict.fun = NULL, type = NULL, task = NULL) {
+create_predict_fun.default <- function(model, task, predict.fun = NULL, type = NULL, task_benchmark = NULL) {
   if (is.null(predict.fun)) {
     if (is.null(type)) {
       predict.fun <- function(object, newdata) predict(object, newdata)
@@ -107,7 +107,7 @@ create_predict_fun.default <- function(model, task, predict.fun = NULL, type = N
   }
 }
 
-create_predict_fun.keras.engine.training.Model <- function(model, task, predict.fun = NULL, type = NULL, task = NULL) {
+create_predict_fun.keras.engine.training.Model <- function(model, task, predict.fun = NULL, type = NULL, task_benchmark = NULL) {
   if (is.null(predict.fun)) {
     predict.fun <- function(object, newdata) predict(object, newdata)
   }
@@ -117,7 +117,7 @@ create_predict_fun.keras.engine.training.Model <- function(model, task, predict.
   }
 }
 
-create_predict_fun.H2ORegressionModel <- function(model, task, predict.fun = NULL, type = NULL, task = NULL) {
+create_predict_fun.H2ORegressionModel <- function(model, task, predict.fun = NULL, type = NULL, task_benchmark = NULL) {
   function(newdata) {
     newdata2 <- h2o::as.h2o(newdata)
     as.data.frame(h2o::h2o.predict(model, newdata = newdata2))
@@ -125,7 +125,7 @@ create_predict_fun.H2ORegressionModel <- function(model, task, predict.fun = NUL
 }
 
 
-create_predict_fun.H2OBinomialModel <- function(model, task, predict.fun = NULL, type = NULL, task = NULL) {
+create_predict_fun.H2OBinomialModel <- function(model, task, predict.fun = NULL, type = NULL, task_benchmark = NULL) {
   function(newdata) {
     # TODO: Include predict.fun and type
     newdata2 <- h2o::as.h2o(newdata)
@@ -133,7 +133,7 @@ create_predict_fun.H2OBinomialModel <- function(model, task, predict.fun = NULL,
   }
 }
 
-create_predict_fun.H2OMultinomialModel <- function(model, task, predict.fun = NULL, type = NULL, task = NULL) {
+create_predict_fun.H2OMultinomialModel <- function(model, task, predict.fun = NULL, type = NULL, task_benchmark = NULL) {
   function(newdata) {
     # TODO: Include predict.fun and type
     newdata2 <- h2o::as.h2o(newdata)
