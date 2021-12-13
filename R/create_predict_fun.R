@@ -34,15 +34,15 @@ create_predict_fun.Learner <- function(model, task, predict.fun = NULL, type = N
   if (task == "classification") {
     function(newdata) {
       if (model$predict_type == "response") {
-        pred <- predict(model, newdata = newdata)
+        pred <- predict(model, newdata = newdata, task_benchmark)
         factor_to_dataframe(pred)
       } else {
-        data.frame(predict(model, newdata = newdata, predict_type = "prob"), check.names = FALSE)
+        data.frame(predict(model, newdata = newdata, task_benchmark, predict_type = "prob"), check.names = FALSE)
       }
     }
   } else if (task == "regression") {
     function(newdata) {
-      data.frame(predict(model, newdata = newdata))
+      data.frame(predict(model, newdata = newdata, task_benchmark))
     }
   } else {
     stop(sprintf("Task type '%s' not supported", task))
