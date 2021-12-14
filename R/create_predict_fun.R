@@ -35,17 +35,17 @@ create_predict_fun.Learner <- function(model, task, predict.fun = NULL, type = N
     function(newdata) {
       if (model$predict_type == "response") {
         #pred <- predict(model, newdata = newdata)
-        pred = learner$predict_newdata(newdata, task_benchmark)[[model$predict_type]]
+        pred = model$predict_newdata(newdata, task_benchmark)[[model$predict_type]]
         factor_to_dataframe(pred)
       } else {
         #data.frame(predict(model, newdata = newdata, predict_type = "prob"), check.names = FALSE)
-        pred = data.frame(learner$predict_newdata(newdata, task_benchmark)[[model$predict_type]], check.names = FALSE)
+        pred = data.frame(model$predict_newdata(newdata, task_benchmark)[[model$predict_type]], check.names = FALSE)
       }
     }
   } else if (task == "regression") {
     function(newdata) {
       #data.frame(predict(model, newdata = newdata))
-      data.table(learner$predict_newdata(newdata, task_benchmark)) #--> still need to test this
+      data.table(model$predict_newdata(newdata, task_benchmark)) #--> still need to test this
     }
   } else {
     stop(sprintf("Task type '%s' not supported", task))
